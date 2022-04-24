@@ -1,0 +1,13 @@
+*{
+  --violeta: #7C83FD;
+  --light-violeta:#96BAFF;
+  --blue: #7DEDFF;
+  --light-blue: #88FFF7;
+}
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
