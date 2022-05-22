@@ -1,65 +1,75 @@
-import React from 'react'
-import TextField from '@mui/material/TextField'
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import { createTheme } from "@mui/material/styles";
-import "./Login.css"
-
+import React from "react";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import {theme} from "../../Theme"
+import { ThemeProvider } from "@mui/material/styles";
+import LoginIcon from "@mui/icons-material/Login";
+import "./Login.css";
+import Bookheader from "../BookHeader/Bookheader";
+import {Link} from "react-router-dom"
 const Login = () => {
+  
 
-  const theme = createTheme({
-    palette: {
-      primary: {
-        // Purple and green play nicely together.
-        main: "#7C83FD",
-      },
-      secondary: {
-        // This is green.A700 as hex.
-        main: "#96BAFF",
-      }
-    },
-  });
   return (
-   
-     <main>
-       <div className="container">
-         <div>
-           DeepStudying 
-         </div>
-         <div>
-           <h1>Conecte-se</h1>
-           <form>
-          <TextField 
-          theme={theme}
-          color="primary"
-          id="outlined-basic" 
-          label="E-mail" 
-          variant="standard">
-          </TextField>
-          <TextField
-          theme={theme}
-          color="secondary"
-          id="outlined-password-input"
-          label="Password"
-          type="password"
-          variant="standard"
-          autoComplete="current-password"
-        />
-            <Stack spacing={1} direction="column">
-              <Button 
-              className="Button" 
-              theme={theme}
-              variant="contained">Conectar</Button>
-              <Button 
-             id="button" 
-              variant="contained"
-              theme={theme}>Criar Conta</Button>
-            </Stack>
-           </form>
-         </div>
-       </div>
-     </main> 
-  )
-}
+    <main>
+      <div className="container">
+        <Bookheader/>
+          <form id="form-login">
+            <h2>Conecte-se ao conhecimento!</h2>
+            <ThemeProvider theme={theme}>
+              <div>
+                <TextField
+                sx={{ borderColor: '#000000'}}
+                  className="input"
+                  color="primary"
+                  id="outlined-basic"
+                  label="E-mail"
+                  variant="outlined"
+                ></TextField>
 
-export default Login
+                <TextField
+                  className="input"
+                  color="primary"
+                  id="outlined-password-input"
+                  label="Senha"
+                  type="password"
+                  variant="outlined"
+                  autoComplete="current-password"
+                />
+
+                <p id="forget-pswd">Esqueci minha senha</p>
+              </div>
+
+              <div className="Btn-group">
+                <Link to="/home" id="entrar">
+                <Button
+                  style={{ borderRadius: 20 }}
+                  className="button"
+                  id="btn-login"
+                  variant="contained"
+                  endIcon={<LoginIcon />}
+                >
+                  Entrar
+                </Button>
+                </Link>
+                <hr></hr>
+                <p>Não possui uma conta?</p>
+                <Link to="/signup" id="criar-conta">
+                <Button
+                  style={{ borderRadius: 10 }}
+                  id="create"
+                  variant="contained"
+                  >
+                  Inscrever-se em DeepStudying
+                </Button>
+                  </Link>
+              </div>
+            </ThemeProvider>
+          </form>
+        </div>
+      
+    </main>
+  );
+};
+
+export default Login;

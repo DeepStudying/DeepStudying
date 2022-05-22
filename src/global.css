@@ -1,13 +1,26 @@
 *{
+  margin: 0;
+  padding: 0;
   --violeta: #7C83FD;
   --light-violeta:#96BAFF;
   --blue: #7DEDFF;
+  --soft-black:#313131;
   --light-blue: #88FFF7;
+  --white-bg: #e9e9e9;
+  --separator: #585858;
+ 
 }
 body {
-  margin: 0;
-  padding: 0;
+  font-family:'Nunito Sans',sans-serif;
+  background: var(--soft-black);
+  color: var(--white-bg);
   box-sizing: border-box;
 }
+
+a{
+  text-decoration: none;
+}
+
+
 
 

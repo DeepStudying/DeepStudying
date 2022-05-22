@@ -1,10 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import SignIn from './pages/SignIn'
+import Home from './pages/Home'
 import './global.css'
+import { DeepProvider } from './contexts/Postcontext'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
+
   <React.StrictMode>
-    <SignIn />
+  <DeepProvider>
+    <Home />
+  </DeepProvider>
+    
   </React.StrictMode>
 )

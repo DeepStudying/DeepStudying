@@ -1,0 +1,27 @@
+#post-container{
+    border-top: 1px solid var(--separator);
+    display:flex;
+
+    padding: 1rem ;
+}
+#post-container:first-child{
+    border-top: none;
+}
+
+.profile-container{
+    display: flex;
+    flex-direction:column;
+    align-items: left;
+}
+
+#post-container .photo{
+    border-radius: 50%;
+    aspect-ratio: 1;
+    height:3rem;
+    width:3rem;
+    margin-right: .5rem;
+}
+
+ .text-post{
+    padding:1rem 0 0 0;
+} 
