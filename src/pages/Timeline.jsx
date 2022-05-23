@@ -8,13 +8,17 @@ import { PostContext } from "../contexts/Postcontext";
 import {posts} from "../../database/index"
 const Timeline = () => {
 
-     const {handlePost, setObject} = useContext(PostContext)
+     const {disabled, handlePost, setObject} = useContext(PostContext)
 
 
 
   return (
     <main className="feed">
       <section className="main-container">
+        <div className="logoHome">
+        <img src="./images/deestudyLogo1.svg" id="logo"/>
+        <h3>Home</h3>
+        </div>
         <div id="header-container">
           <div className="profile-photo">
             <img className="photo" src="/images/profileDeepTest.jpg" />
@@ -23,28 +27,30 @@ const Timeline = () => {
             <textarea placeholder="Criar post" className="input-post" 
             onChange={handlePost}
             />
-          </form>
-
-          <ThemeProvider theme={theme}>
+            <ThemeProvider theme={theme}>
             <Button
               style={{ borderRadius: 15 }}
               variant="contained"
               className="button"
               id="publicar"
+              disabled={disabled}
               onClick={()=>setObject()}
             >
               Publicar
             </Button>
           </ThemeProvider>
+          </form>
+
         </div> 
+          
         <div id="feed-container" className="post">
-        {posts.map((post, index) =>{
+        {posts.map((post) =>{
          return(
          <Post
           profilePhoto={post.profilePhoto}
           userName={post.userName}
           postText={post.textPost}
-          key={index}
+          key={post.id}
           />) 
         })}
         

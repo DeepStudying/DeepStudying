@@ -15,6 +15,7 @@ const Login = () => {
       <div className="container">
         <Bookheader/>
           <form id="form-login">
+            <img src="./images/deestudyLogo1.svg"></img>
             <h2>Conecte-se ao conhecimento!</h2>
             <ThemeProvider theme={theme}>
               <div>

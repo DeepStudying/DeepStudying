@@ -11,6 +11,7 @@ export default function CreateAccount(){
     <div className="container">
       <Bookheader/>
         <form>
+        <img src="./images/deestudyLogo1.svg"></img>
             <h2>Crie a sua conta!</h2>
             <ThemeProvider theme={theme}>
               <div>
@@ -57,6 +58,7 @@ export default function CreateAccount(){
                   Já possui uma conta?
                 </Button>
                 </Link>
+                <Link to="/home" id="entrar">
                 <Button
                   style={{ borderRadius: 20 }}
                   className="button"
@@ -66,6 +68,7 @@ export default function CreateAccount(){
                 >
                   Criar Conta
                 </Button>
+                </Link>
                 {/* <hr></hr> */}
               </div>
             </ThemeProvider>
