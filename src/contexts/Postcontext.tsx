@@ -1,18 +1,15 @@
 import React, { useState, createContext, useEffect, ReactNode } from "react";
-import { posts } from "../../database/index"
+import { posts } from "../../database";
+import { PostContextType } from "../types/Context";
+import { PostType } from "../types/Post";
 
 type PostContextProps = {
     children: ReactNode
 }
-export type PostType = {
-    userName: string;
-    profilePhoto: string;
-    textPost: string;
-    key: number;
-}
 const initialValue = {
+    text: '',
     publicar:false,
-    postValue: [],
+    // postValue: [],
     disabled: true,
     likes: false,
     countLikes: 0,
@@ -21,21 +18,12 @@ const initialValue = {
     handlePost: () => { },
 }
 
-type PostContextType={
-    postValue: object,
-    disabled:boolean,
-    likes:boolean,
-    countLikes: number,
-    setObject: () => void,
-    handleFavorites: () => void
-    handlePost: (event: { target: { value: string; }; }) => void,
-}
-
 export const PostContext = createContext<PostContextType>(initialValue)
 
 
 export function DeepProvider({ children }: PostContextProps) {
-    const [postValue, setPostValue] = useState<PostType[]>([])
+    const [postValue, setPostValue] = useState(posts)
+    const [text, setText] = useState(initialValue.text)
     const [disabled, setDisabled] = useState(initialValue.disabled)
     const [publicar, setPublicar] = useState(initialValue.publicar)
     const [likes, setLikes] = useState(initialValue.likes)
@@ -51,22 +39,15 @@ export function DeepProvider({ children }: PostContextProps) {
     }, [likes])
 
     function handlePost(event: { target: { value: string; }; }) {
-        let textValue = event.target.value
-        !textValue.length ? setDisabled(true) : setDisabled(false)
-        const post: PostType = {
-            userName: "João Vitor",
-            profilePhoto: "/images/profileDeepTest.jpg",
-            textPost: textValue,
-            key: (0 + Math.random() * 45),
-        }
-        setPostValue([post])
-        
+        let textInput = event.target.value
+        !textInput.length ? setDisabled(true) : setDisabled(false)
+        setText(textInput)
     }
 
     function setObject() {
         setPublicar(!publicar)
-        posts.push(postValue)
-        console.log(postValue)
+        posts.push({userName: "Joao Vitor gostoso", profilePhoto: "", textPost: text, id: 0})
+        console.log(text)
     }
 
     function handleFavorites() {
@@ -75,7 +56,7 @@ export function DeepProvider({ children }: PostContextProps) {
     }
 
     return (
-        <PostContext.Provider value={{ postValue, disabled, likes, countLikes, handleFavorites, handlePost, setObject }}>
+        <PostContext.Provider value={{ disabled, likes, countLikes, handleFavorites, handlePost, setObject }}>
             {children}
         </PostContext.Provider>
     )

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import {theme} from "../../Theme"
@@ -8,13 +8,23 @@ import "./Login.css";
 import Bookheader from "../BookHeader/Bookheader";
 import {Link} from "react-router-dom"
 const Login = () => {
+
+
+  // const [email, setEmail] = useState("")
+  // const [password, setPassword] = useState("")
   
+  // const handleSubmit = (e: { preventDefault: () => void; }) => {
+  //   e.preventDefault();
+  //   console.log("submit", {email, password})
+  // }
 
   return (
     <main>
       <div className="container">
         <Bookheader/>
-          <form id="form-login">
+          <form id="form-login" 
+          // onSubmit={handleSubmit}
+          >
             <img src="./images/deestudyLogo1.svg"></img>
             <h2>Conecte-se ao conhecimento!</h2>
             <ThemeProvider theme={theme}>
@@ -24,6 +34,8 @@ const Login = () => {
                   className="input"
                   color="primary"
                   id="outlined-basic"
+                  // value={email}
+                  // onChange={(e)=> setEmail(e.target.value)}
                   label="E-mail"
                   variant="outlined"
                 ></TextField>
@@ -33,6 +45,8 @@ const Login = () => {
                   color="primary"
                   id="outlined-password-input"
                   label="Senha"
+                  // value={password}
+                  // onChange={(e) =>setPassword(e.target.value)}
                   type="password"
                   variant="outlined"
                   autoComplete="current-password"
@@ -48,6 +62,7 @@ const Login = () => {
                   className="button"
                   id="btn-login"
                   variant="contained"
+                  type="submit"
                   endIcon={<LoginIcon />}
                 >
                   Entrar
@@ -74,3 +89,7 @@ const Login = () => {
 };
 
 export default Login;
+function e(e: any): void {
+  throw new Error("Function not implemented.");
+}
+

@@ -1,6 +1,10 @@
-import {PostType} from "../src/contexts/Postcontext"
+import { PostType } from "../src/types/Post";
 
-
-export let posts = [{}as PostType] ;
- 
-
+export const posts:PostType[] =[
+    // {
+    //     userName: "JoãoVitor",
+    //     textPost: 'Eu quero que esse site de certo',
+    //     profilePhoto: './images/profileDeepTest.jpg',
+    //     id: 59
+    // }
+] 
