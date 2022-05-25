@@ -8,8 +8,10 @@ import {theme} from '../../Theme'
 import { ThemeProvider } from "@emotion/react";
 import "./Post.css"
 import { PostContext } from '../../contexts/Postcontext';
+import {PostType} from '../../contexts/Postcontext'
 
-const Post = ({profilePhoto, userName, postText}) => {
+
+const Post =({profilePhoto, userName, textPost}: PostType) => {
   const {handleFavorites, likes, countLikes} = useContext(PostContext)
 
   return (
@@ -24,7 +26,7 @@ const Post = ({profilePhoto, userName, postText}) => {
         <MoreVertIcon id="more-actions" />
       </IconButton>
       </div>
-      <p className="text-post">{postText}</p>
+      <p className="text-post">{textPost}</p>
       <div className="action-group">
       <IconButton onClick={()=>{handleFavorites()}} id="favorite" color="primary" aria-label="add to favorites">
     {likes==false?(<FavoriteBorderIcon fontSize="small"/> ):(<FavoriteIcon  fontSize="small"/>) }

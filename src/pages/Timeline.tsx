@@ -4,7 +4,7 @@ import { theme } from "../Theme";
 import { ThemeProvider } from "@emotion/react";
 import "./Timeline.css";
 import Post from '../components/Posts/Post'
-import { PostContext } from "../contexts/Postcontext";
+import { PostContext, PostType } from "../contexts/Postcontext";
 import {posts} from "../../database/index"
 const Timeline = () => {
 
@@ -49,8 +49,8 @@ const Timeline = () => {
          <Post
           profilePhoto={post.profilePhoto}
           userName={post.userName}
-          postText={post.textPost}
-          key={post.id}
+          textPost={post.textPost}
+          key={post.key}
           />) 
         })}
         
