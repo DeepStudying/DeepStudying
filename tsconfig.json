@@ -16,7 +16,7 @@
       "noEmit": true,
       "jsx": "react-jsx"
     },
-    "include": ["src"],
+    "include": ["src", "src/state/actions"],
     "exclude": ["node_modules", "**/*.spec.js"],
     "references": [{ "path": "./tsconfig.node.json" }]
   }

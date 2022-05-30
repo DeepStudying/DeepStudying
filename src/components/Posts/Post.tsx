@@ -2,19 +2,15 @@ import { IconButton } from '@mui/material'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
-import React, { useContext } from 'react'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { theme } from '../../Theme'
 import { ThemeProvider } from "@emotion/react";
 import "./Post.css"
-import { PostContext } from '../../contexts/Postcontext';
-import { PostType } from '../../types/Post';
 
 
 
-const Post = ({ profilePhoto, userName, textPost }: PostType) => {
-  const { handleFavorites, likes, countLikes } = useContext(PostContext)
-
+const Post = () => {
+ 
   return (
     <ThemeProvider theme={theme}>
 
@@ -29,9 +25,13 @@ const Post = ({ profilePhoto, userName, textPost }: PostType) => {
           </div>
           <p className="text-post">{textPost}</p>
           <div className="action-group">
-            <IconButton onClick={() => { handleFavorites() }} id="favorite" color="primary" aria-label="add to favorites">
-              {likes == false ? (<FavoriteBorderIcon fontSize="small" />) : (<FavoriteIcon fontSize="small" />)}
-              <p id="count-likes">{countLikes}</p>
+            <IconButton 
+            // onClick={() =>  handleFavorites(id)} 
+            id="favorite" color="primary" aria-label="add to favorites">
+              {!isLiked ? (<FavoriteBorderIcon fontSize="small" />) : (<FavoriteIcon fontSize="small" />)}
+              <p id="count-likes">
+                {/* {countLikes} */}
+                </p>
             </IconButton>
             <IconButton id="share" aria-label="share">
               <ShareIcon fontSize="small" />
