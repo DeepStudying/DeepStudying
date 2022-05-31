@@ -6,31 +6,43 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { theme } from '../../Theme'
 import { ThemeProvider } from "@emotion/react";
 import "./Post.css"
+import {addLike} from "../../redux/postSlice"
+import { PostType } from '../../types/Post';
+import { useDispatch } from 'react-redux';
 
 
 
-const Post = () => {
+const Post = (props:PostType) => {
+
+  const dispatch = useDispatch()
+
+  function handleFavorites(id: number){
+      dispatch(addLike(id))
+     
+    }
+
+  
  
   return (
     <ThemeProvider theme={theme}>
 
       <div id="post-container">
-        <img src={profilePhoto} className="photo" />
+        <img src={props.profilePhoto} className="photo" />
         <div className="profile-container">
           <div id="name-and-action">
-            <h4>{userName}</h4>
+            <h4>{props.userName}</h4>
             <IconButton id="more-actions">
               <MoreVertIcon id="more-actions" />
             </IconButton>
           </div>
-          <p className="text-post">{textPost}</p>
+          <p className="text-post">{props.textPost}</p>
           <div className="action-group">
             <IconButton 
-            // onClick={() =>  handleFavorites(id)} 
+            onClick={() =>  handleFavorites(props.id)} 
             id="favorite" color="primary" aria-label="add to favorites">
-              {!isLiked ? (<FavoriteBorderIcon fontSize="small" />) : (<FavoriteIcon fontSize="small" />)}
+              {!props.isLiked ? (<FavoriteBorderIcon fontSize="small" />) : (<FavoriteIcon fontSize="small" />)}
               <p id="count-likes">
-                {/* {countLikes} */}
+                {props.likes}
                 </p>
             </IconButton>
             <IconButton id="share" aria-label="share">
@@ -45,3 +57,6 @@ const Post = () => {
 }
 
 export default Post
+
+
+

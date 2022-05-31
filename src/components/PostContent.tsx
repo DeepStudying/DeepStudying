@@ -1,4 +1,3 @@
-import { PostType } from "../types/Post";
 
 export default class Item{
     static lastId =  0 + Math.random() * 45;

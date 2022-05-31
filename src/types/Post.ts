@@ -5,4 +5,5 @@ export type PostType = {
     profilePhoto: string;
     id: number;
     isLiked: boolean;
+    likes:number
 }

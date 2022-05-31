@@ -1,54 +1,51 @@
 import { Button } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Key } from "react";
 import { theme } from "../Theme";
 import { ThemeProvider } from "@emotion/react";
 import "./Timeline.css";
 import Post from '../components/Posts/Post'
-import { PostType } from "../types/Post";
+import {addPost} from "../redux/postSlice"
 import { useDispatch, useSelector } from "react-redux";
-import { bindActionCreators } from "redux"
-import { listAction } from "../state/index"
-import { State } from "../state/reducers/index"
-import { Action } from "../state/reducers/postReducer";
+import { PostType } from "../types/Post";
 
 const initialValue = {
   text: '',
   publicar: false,
-  postValue: [],
-  disabled: true,
   isLiked: false,
-  countLikes: 0,
-  handleFavorites: () => { },
+  disabled: true,
   setObject: () => { },
   handlePost: () => { },
 }
 
 
-
 const Timeline = () => {
-  const [postValue, setPostValue] = useState<PostType[]>(initialValue.postValue)
-  const [isLiked, setIsLiked] = useState(initialValue.isLiked)
-  const [countLikes, setCountLikes] = useState(initialValue.countLikes)
   const [text, setText] = useState(initialValue.text)
   const [disabled, setDisabled] = useState(initialValue.disabled)
   const [publicar, setPublicar] = useState(initialValue.publicar)
 
   const dispatch = useDispatch()
-  const { addPost } = bindActionCreators(listAction, dispatch)
-  const state = useSelector((state: State)=> state.post)
-  
+  const posts = useSelector((state:any)=> state.posts)
+  // useSelector()
   useEffect(() => {
     setDisabled(true)
-    setPostValue([])
+   
   }, [publicar])
 
+
   function setObject() {
-    if (text) {
-      dispatch(addPost(text))
-    }
+    dispatch(addPost({
+      userName: "_alastra",
+      textPost: text,
+      profilePhoto: "http://github.com/joaovsz.png",
+      id: 2,
+      isLiked: false,
+      likes:0
+    }))
     setPublicar(!publicar)
     setText('')
   }
+
+
 
   function handlePost(event: { target: { value: string; }; }) {
     let textInput = event.target.value
@@ -91,18 +88,20 @@ const Timeline = () => {
         </div>
 
         <div id="feed-container" className="post">
-          {items.map((post) => {
+          {posts.map((post: PostType) => {
             return (
               <Post
-                profilePhoto={post.profilePhoto}
-                userName={post.userName}
-                textPost={post.textPost}
-                id={post.id}
-                key={post.id}
+              userName={post.userName}
+              textPost={post.textPost}
+              profilePhoto={post.profilePhoto}
+              id={post.id}
+              isLiked={post.isLiked}
+              key={post.id}
+              likes={post.likes}
               />)
           })}
 
-        </div>
+        </div> 
       </section>
 
     </main>
